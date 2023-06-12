@@ -2,15 +2,12 @@ const connect = require("../database/connect")
 
 module.exports = {
     /**
-     * Helper to create department
-     * @param{{name: string}} attributes
-     */
+   * Helper to create employee
+   * @param {{ firstname: string, lastname: string, role_id: number, manager_id: number }} attributes
+   */
     create: async function (attributes) {
-        const defaultSalary=0;
-        console.log(attributes)
         const db = await connect();
-        //return db.execute('INSERT INTO `depttracker_db`.`role` (`title`) VALUES (?)', [attributes.name])
-        return db.execute('INSERT INTO `depttracker_db`.`role` (`title`, `salary`) VALUES (?, ?)', [attributes.name, defaultSalary])
+        return db.execute('INSERT INTO `depttracker_db`.`employee` (`id`, `first_name`, `last_name`, `role_id`, `manager_id`) VALUES (?, ?, ?, ?, ?)', [attributes.id, attributes.firstname, attributes.lastname, attributes.role_id, attributes.manager_id])
 
             .then(result => {
                 //console.log('abc', result)
@@ -20,7 +17,7 @@ module.exports = {
     
     async all(){
         const db = await connect();
-        return db.execute('SELECT * FROM roles')
+        return db.execute('SELECT * FROM employee')
         .then(result=>{
             console.log(result)
         })
