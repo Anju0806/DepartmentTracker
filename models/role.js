@@ -6,23 +6,21 @@ module.exports = {
      * @param{{name: string}} attributes
      */
     create: async function (attributes) {
-        const defaultSalary=0;
+        const defaultSalary = 0;
         console.log(attributes)
         const db = await connect();
-        //return db.execute('INSERT INTO `depttracker_db`.`role` (`title`) VALUES (?)', [attributes.name])
-        return db.execute('INSERT INTO `depttracker_db`.`role` (`title`, `salary`) VALUES (?, ?)', [attributes.name, defaultSalary])
-
+        return db.execute('INSERT INTO `depttracker_db`.`role` (`title`, `salary`, `department_id`) VALUES (?, ?, ?)', [attributes.title, attributes.salary, attributes.department_id])
             .then(result => {
                 //console.log('abc', result)
             });
     },
 
-    
-    async all(){
+
+    async all() {
         const db = await connect();
         return db.execute('SELECT * FROM roles')
-        .then(result=>{
-            console.log(result)
-        })
-        }
+            .then(result => {
+                console.log(result)
+            })
+    }
 }

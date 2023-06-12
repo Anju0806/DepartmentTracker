@@ -8,7 +8,7 @@ module.exports = {
     create: async function (attributes) {
         //console.log(attributes)
         const db = await connect();
-        return db.execute('INSERT INTO `depttracker_db`.`department` (`name`) VALUES (?)', [attributes.name])
+        return db.execute('INSERT INTO `depttracker_db`.`department` ( `name`) VALUES (?)', [ attributes.name])
 
             .then(result => {
                // console.log('abc', result)

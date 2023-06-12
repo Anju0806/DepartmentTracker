@@ -1,13 +1,18 @@
 const { faker } = require("@faker-js/faker");
 const role = require("../../models/role");
 
-//seed  roles
-async function seedRoles(num=10){
+async function seedRoles(num = 10) {
+  
     for (let index = 0; index < num; index++) {
-        role.create({
-            name:faker.person.jobType()
-        })
+        const randomId = Math.floor(Math.random() * 10) + 1;
+        const randomSalary = Math.floor(Math.random() * (5000 - 3000 + 1)) + 3000;
+
+      await role.create({
+        title: faker.person.jobType(),
+        department_id: randomId, // Assign department_id to the role
+        salary: randomSalary
+      });
     }
-} 
+  }
 
 module.exports=seedRoles;
