@@ -3,7 +3,7 @@
 
 ## Description
 
-This DepartmentTracker application empowers you to effectively organize and plan your business by providing a clear overview of your organizational structure and the individuals within it. The application utilizes MySQL2 for database connectivity, Node.js for server-side functionality, and Inquirer for the command-line interface,
+This DepartmentTracker is a command-line application empowers you to effectively organize and plan your business by providing a clear overview of your organizational structure and the individuals within it. The application utilizes MySQL2 for database connectivity, Node.js for server-side functionality, and Inquirer for the command-line interface,
 
 
 ## Table of Contents

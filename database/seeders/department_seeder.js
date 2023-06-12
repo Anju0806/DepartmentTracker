@@ -1,7 +1,7 @@
 const { faker } = require("@faker-js/faker");
 const department = require("../../models/department");
 
-//see  departments
+//seed  departments
 async function seedDepartments(num=10){
     for (let index = 0; index < num; index++) {
 

@@ -11,7 +11,7 @@ module.exports = {
         return db.execute('INSERT INTO `depttracker_db`.`department` (`name`) VALUES (?)', [attributes.name])
 
             .then(result => {
-                console.log('abc', result)
+               // console.log('abc', result)
             });
     },
 

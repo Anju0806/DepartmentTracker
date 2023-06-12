@@ -17,6 +17,7 @@
     "@faker-js/faker": "^8.0.2",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
+    "inquirer": "^8.2.4",
     "mysql2": "^3.3.4"
   }
 }

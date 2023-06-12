@@ -7,13 +7,13 @@ module.exports = {
      */
     create: async function (attributes) {
         const defaultSalary=0;
-        //console.log(attributes)
+        console.log(attributes)
         const db = await connect();
         //return db.execute('INSERT INTO `depttracker_db`.`role` (`title`) VALUES (?)', [attributes.name])
         return db.execute('INSERT INTO `depttracker_db`.`role` (`title`, `salary`) VALUES (?, ?)', [attributes.name, defaultSalary])
 
             .then(result => {
-                console.log('abc', result)
+                //console.log('abc', result)
             });
     },
 
