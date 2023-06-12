@@ -6,7 +6,6 @@ console.log(process.env.DB_HOST);
 
 const app = express();
 
-
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 //app.use(deptrouter);

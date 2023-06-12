@@ -8,10 +8,8 @@ async function seedDepartments(num=10){
         
         department.create({
             name:faker.commerce.department()
-        })
-        
+        }) 
     }
-
 } 
 
 module.exports=seedDepartments;
