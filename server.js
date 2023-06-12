@@ -1,5 +1,4 @@
 const express = require('express');
-//const movieRouter = require('./routes/movies');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
