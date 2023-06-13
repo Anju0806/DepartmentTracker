@@ -2,7 +2,7 @@ const { faker } = require("@faker-js/faker");
 const employee = require("../../models/employee");
 
 //seed employee
-async function seedEmployees(num = 10) {
+async function seedEmployees(num = 11) {
 
     for (let index = 1; index < num; index++) {
         const randomnum = index;

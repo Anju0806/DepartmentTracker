@@ -13,11 +13,10 @@ module.exports = {
             });
     },
     async all() {
-        const db 
-        = await connect();
+        const db = await connect();
         return db
             .execute(
-                'SELECT r.title, r.id, d.name AS department, r.salary FROM role AS r INNER JOIN department AS d ON r.department_id = d.id')
+                'SELECT r.id, r.title, d.name AS department, r.salary FROM role AS r INNER JOIN department AS d ON r.department_id = d.id')
             .then(result => {
                 return result[0];
             });

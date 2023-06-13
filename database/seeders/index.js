@@ -13,46 +13,108 @@ const seedRoles = require('./role_seeder');
 
 async function displayOpeningPage() {
     console.log('Welcome to the DepartmentTracker Application!');
-    console.log('-------------------------------------------');
-    console.log('Please select an option to proceed:');
-    console.log('1. View Departments');
-    console.log('2. View Roles');
-    console.log('3. View Employees');
-    console.log('4. Add Departments');
-    console.log('5. Add Roles');
-    console.log('6. Add Employees');
-    console.log('7. Update an Employee');
-    console.log('8. Exit');
-
+    console.log('--------------------------------------------');
     const answers = await inquirer.prompt([
         {
             type: 'list',
             name: 'option',
-            message: 'Select an option:',
-            choices: ['1', '2', '3', '4', '5', '6', '7', '8'],
+            message: 'Please select an option to proceed:',
+            choices: ['1. View Departments', '2. View Roles', '3. View Employees', '4. Add Department', '5. Add Role', '6. Add Employee', '7. Update Employee Role', '8. Exit'],
         },
     ]);
 
     const selectedOption = answers.option;
     switch (selectedOption) {
-        case '1':
+        case '1. View Departments':
             console.log('Viewing Departments...');
             // Call function to handle viewing departments
             const departments = await department.all();
             displayDepartments(departments);
             break;
-        case '2':
+        case '2. View Roles':
             console.log('Viewing Roles...');
             const roles = await role.all();
-            displayEmployees(roles);
-            // Call function to handle viewing roles
+            displayRoles(roles);
             break;
-        case '3':
+        case '3. View Employees':
             console.log('Viewing Employees...');
             const employees = await employee.all();
             displayEmployees(employees);
             break;
-        case '8':
+        case '4. Add Department':
+            console.log('Add a Department');
+            const dept = await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'department',
+                    message: 'Please add the department name: ',
+                },
+            ]);
+            const department_name = dept.department;
+            await department.create({ name: department_name })
+                .then(() => {
+                    console.log(`Department ${department_name} added successfully.`);
+                })
+                .catch(error => {
+                    console.log('An error occurred while adding the department:', error);
+                });
+            break;
+        /* ------------------- */
+        case '5. Add Role':
+            console.log('Add a Role');
+            const addrole = await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'role',
+                    message: 'Please add the role title: ',
+                },
+            ]);
+            const role_name = addrole.role;
+            const addsalary = await inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'role',
+                    message: 'Please add the salary for the role:',
+                },
+            ]);
+            const salary_name = addsalary.salary;
+
+            const d = await department.all();
+            const departmentChoices = d.map((dept) => ({ name: dept.name, value: dept.id }));
+            const select_department = await inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'dept_selected',
+                    message: 'Please select the department for `${role_name}:',
+                    choices: departmentChoices,
+                },
+            ]);
+
+            const selectedDept = select_department.dept_selected;
+            const departmentId = selectedDept !== undefined ? selectedDept : null;
+
+            await role.create({
+                title: role_name,
+                department_id: departmentId,
+                salary: salary_name
+            })
+                .then(() => {
+                    console.log(`Role ${role_name} added successfully.`);
+                })
+                .catch(error => {
+                    console.log('An error occurred while adding the role:', error);
+                });
+            break;
+        /* ------------------- */
+        case '6. Add Employee':
+            console.log('Add an Employee');
+            // const employees = await employee.all();
+            break;
+        case '7. Update Employee Role':
+            console.log('Update Employee Role');
+            //const employees = await employee.all();
+            break;
+        case '8. Exit':
             console.log('Exiting DepartmentTracker Application...');
             process.exit(0);
     }
