@@ -4,7 +4,7 @@ const employee = require("../../models/employee");
 //seed employee
 async function seedEmployees(num = 10) {
 
-    for (let index = 0; index < num; index++) {
+    for (let index = 1; index < num; index++) {
         const randomnum = index;
         const randomId = Math.floor(Math.random() * 10) + 1;
         /* let randomManagerID = Math.floor(Math.random() * 10) + 1;
