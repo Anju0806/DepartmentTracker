@@ -4,6 +4,8 @@ const department = require('../../models/department');
 const { displayDepartments } = require('../../models/displayDepartments');
 const employee = require('../../models/employee');
 const { displayEmployees } = require('../../models/displayEmployees');
+const role = require('../../models/role');
+const { displayRoles } = require('../../models/displayRoles');
 const connect = require('../connect');
 const seedDepartments = require('./department_seeder');
 const seedEmployees = require('./employee_seeder');
@@ -41,6 +43,8 @@ async function displayOpeningPage() {
             break;
         case '2':
             console.log('Viewing Roles...');
+            const roles = await role.all();
+            displayEmployees(roles);
             // Call function to handle viewing roles
             break;
         case '3':
