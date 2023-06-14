@@ -15,6 +15,18 @@ module.exports = {
       });
   },
 
+  budget: async function () {
+    const db = await connect();
+    return db
+      .execute(`SELECT department.name AS department, SUM(role.salary) AS total_budget
+      FROM role
+      INNER JOIN department ON role.department_id = department.id
+      GROUP BY department.name`)
+      .then(result => {
+        return result[0];
+      });
+  },
+
   /**
    * Fetch all departments
    */

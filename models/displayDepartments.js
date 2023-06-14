@@ -6,6 +6,9 @@ module.exports = {
    */
 displayDepartments: function (departments) {
   console.table(departments)
-  }
+  },
+displayBudget: function (result) {
+    console.table(result)
+    },
 
 }

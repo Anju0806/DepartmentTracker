@@ -20,7 +20,7 @@ module.exports = {
             .then(result => {
                 return result[0];
             });
-    }
+    },
 }
 
 /* WHEN I choose to view all roles
