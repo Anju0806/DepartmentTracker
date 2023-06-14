@@ -23,6 +23,8 @@ To install the DepartmentTracker application, please follow these steps:
 1. Clone the repository to your local machine.
 2. Open a terminal and navigate to the project's root directory.
 3. Run the command npm install to install the required dependencies.
+4. Run the command npm run seed to populate data into database for testing
+5. Run the command node server.js to start the application
 
 
 ## Usage
@@ -30,7 +32,6 @@ To install the DepartmentTracker application, please follow these steps:
 1. To start using the DepartmentTracker application, please follow these steps:
 2. Navigate to the project's root directory and Open the integrated terminal with server.
 3. Run the command node server.js to start the application.
-4. Open a web browser and go to http://localhost:3000 to access the application.
 
 ## License
 

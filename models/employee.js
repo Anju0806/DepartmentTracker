@@ -58,7 +58,14 @@ module.exports = {
             return result[0];
           });
       },
-      
+    deleteFromEmployee: async function (empId) {
+        const db = await connect();
+        return db.execute(`DELETE FROM employee WHERE id = ${empId}`)
+    
+          .then(result => {
+            return result[0].affectedRows;
+          });
+      },
 
     async all() {
         const db = await connect();

@@ -19,17 +19,20 @@ const seedRoles = require('./role_seeder');
     await db.execute(createdepartment);
     await seedDepartments();
 
-    const createrole = 'CREATE TABLE `depttracker_db`.`role` (`id` INT NOT NULL AUTO_INCREMENT,`title` VARCHAR(50) NOT NULL,`salary` VARCHAR(45) NOT NULL,`department_id` INT NULL,PRIMARY KEY (`id`),INDEX `department_id_idx` (`department_id` ASC) VISIBLE,CONSTRAINT `fk_department_id` FOREIGN KEY (`department_id`) REFERENCES`depttracker_db`.`department`(`id`) ON DELETE SET NULL ON UPDATE CASCADE)';
+    const createrole = 'CREATE TABLE `depttracker_db`.`role` (`id` INT NOT NULL AUTO_INCREMENT,`title` VARCHAR(50) NOT NULL,`salary` DECIMAL(10, 2) NOT NULL,`department_id` INT NULL,PRIMARY KEY (`id`),INDEX `department_id_idx` (`department_id` ASC) VISIBLE,CONSTRAINT `fk_department_id` FOREIGN KEY (`department_id`) REFERENCES`depttracker_db`.`department`(`id`) ON DELETE SET NULL ON UPDATE CASCADE)';
     await db.execute(createrole);
     await seedRoles();
 
-    // const createemployee = 'CREATE TABLE `depttracker_db`.`employee` (`id` INT NOT NULL AUTO_INCREMENT, `first_name` VARCHAR(30) NOT NULL, `last_name` VARCHAR(30) NOT NULL, `role_id` INT NULL, `manager_id` INT NULL, PRIMARY KEY (`id`), CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `depttracker_db`.`role` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, CONSTRAINT `fk_manager_id` FOREIGN KEY (`manager_id`) REFERENCES `depttracker_db`.`employee` (`id`) ON DELETE SET NULL ON UPDATE CASCADE)';
-    const createemployee = 'CREATE TABLE `depttracker_db`.`employee` ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT, `first_name` VARCHAR(30) NOT NULL, `last_name` VARCHAR(30) NOT NULL, `role_id` INT NULL, PRIMARY KEY (`id`), CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `depttracker_db`.`role` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, `manager_id` INT UNSIGNED, INDEX `man_ind` (`manager_id`), CONSTRAINT `fk_manager` FOREIGN KEY (`manager_id`) REFERENCES `employee`(`id`) ON DELETE SET NULL);';
+    const createemployee = 'CREATE TABLE `depttracker_db`.`employee` (`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,`first_name` VARCHAR(30) NOT NULL,`last_name` VARCHAR(30) NOT NULL,`role_id` INT NULL,PRIMARY KEY (`id`),CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `depttracker_db`.`role` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,`manager_id` INT UNSIGNED,INDEX `man_ind` (`manager_id`),CONSTRAINT `fk_manager` FOREIGN KEY (`manager_id`) REFERENCES `employee`(`id`) ON DELETE SET NULL );';
     await db.execute(createemployee);
     await seedEmployees();
+   
+
+    //'CREATE TABLE `depttracker_db`.`employee` ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT, `first_name` VARCHAR(30) NOT NULL, `last_name` VARCHAR(30) NOT NULL, `role_id` INT NULL, PRIMARY KEY (`id`), CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `depttracker_db`.`role` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, `manager_id` INT UNSIGNED, INDEX `man_ind` (`manager_id`), CONSTRAINT `fk_manager` FOREIGN KEY (`manager_id`) REFERENCES `employee`(`id`) ON DELETE SET NULL);';
+      
 
     console.log('Database seeding completed.');
-    await displayOpeningPage();
+    process.exit(0);
 })();
 
 

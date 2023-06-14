@@ -21,6 +21,14 @@ module.exports = {
                 return result[0];
             });
     },
+    deleteFromRole: async function (roleId) {
+        const db = await connect();
+        return db.execute(`DELETE FROM role WHERE id = ${roleId}`)
+    
+          .then(result => {
+            return result[0].affectedRows;
+          });
+      },
 }
 
 /* WHEN I choose to view all roles

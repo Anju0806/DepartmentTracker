@@ -31,7 +31,8 @@ async function displayOpeningPage() {
                     '9. View employees by manager',
                     '10. View employees by department',
                     '11. View the total utilized budget of a department',
-                    '12. Exit'],
+                    '12. Delete from Database',
+                    '13. Exit'],
         },
     ]);
 
@@ -39,7 +40,6 @@ async function displayOpeningPage() {
     switch (selectedOption) {
         case '1. View Departments':
             console.log('Viewing Departments...');
-            // Call function to handle viewing departments
             const departments = await department.all();
             displayDepartments(departments);
             break;
@@ -286,7 +286,7 @@ async function displayOpeningPage() {
                 },
             ]);
 
-            let dptId = select_department1.dept_selected;
+            dptId = select_department1.dept_selected;
             try {
                 employee_by_department = await employee.employeeByDepartment(dptId);
 
@@ -302,8 +302,6 @@ async function displayOpeningPage() {
             }
             break;
         case '11. View the total utilized budget of a department':
-            
-            
             try {
                 result = await department.budget();
 
@@ -318,7 +316,112 @@ async function displayOpeningPage() {
                 console.log('An error occurred while displaying budget:', error);
             }
             break;
-        case '12. Exit':
+        case '12. Delete from Database':
+            let delete_option = await inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'deleteoption',
+                    message: 'Please select an option to delete from :',
+                    choices: ['1. Delete a department','2. Delete a role','3. Delete an employee','4. Exit from deleting'],
+                },
+            ]);
+            const selected_opt = delete_option.deleteoption;
+            switch (selected_opt) {
+            case '1. Delete a department':
+                   let d1 = await department.all();
+                    let departmentChoices1 = d1.map((dept) => ({ name: dept.name, value: dept.id }));
+                    let select_department1 = await inquirer.prompt([
+                        {
+                            type: 'list',
+                            name: 'dept_selected',
+                            message: 'Please select the department :',
+                            choices: departmentChoices1,
+                        },
+                    ]);
+        
+                    let departmentId = select_department1.dept_selected;
+                    try {
+                        deletequery = await department.deleteFromDepartment(departmentId);
+        
+                        if (deletequery.length === 0) {
+                            console.log('No Department found...');
+                        }
+                        else {
+                            console.log('selected department deleted');
+                        }
+        
+                    } catch (error) {
+                        console.log('An error occurred while deleting department:', error);
+                    }
+                    await displayOpeningPage();
+
+                
+                case '2. Delete a role':
+                    {
+                  let r1 = await role.all();
+                    let rChoices = r1.map((rolemap) => ({ name: rolemap.title, value: rolemap.id }));
+                    let select_role = await inquirer.prompt([
+                        {
+                            type: 'list',
+                            name: 'role_selected',
+                            message: 'Please select the role: ',
+                            choices: rChoices,
+                        },
+                    ]);
+                    let roleId = select_role.role_selected;
+                    try {
+                        deletequery = await role.deleteFromRole(roleId);
+        
+                        if (deletequery.length === 0) {
+                            console.log('No Role found...');
+                        }
+                        else {
+                            console.log('selected role deleted');
+                        }
+        
+                    } catch (error) {
+                        console.log('An error occurred while deleting role:', error);
+                    }
+                    await displayOpeningPage();
+                }
+                
+                case '3. Delete an employee':
+                    {
+                  e = await employee.all();
+                 let empChoices = e.map((emp) => ({ name: `${emp.first_name} ${emp.last_name}`, value: emp.id }));
+                let select_emp = await inquirer.prompt([
+                        {
+                            type: 'list',
+                            name: 'emp_selected',
+                            message: 'Please select the employee: ',
+                            choices: empChoices,
+                        },
+                    ]);
+                    let empId = select_emp.emp_selected;
+                    try {
+                        deletequery = await employee.deleteFromEmployee(empId);
+        
+                        if (deletequery.length === 0) {
+                            console.log('No Employee found...');
+                        }
+                        else {
+                            console.log('selected employee deleted');
+                        }
+        
+                    } catch (error) {
+                        console.log('An error occurred while deleting an employee:', error);
+                    }
+                    await displayOpeningPage();
+                }
+                
+                case '4. Exit from deleting':
+                
+                    console.log('Not deleting from database...');
+                    await displayOpeningPage();
+                
+            }
+        
+        case '13. Exit':
             console.log('Exiting DepartmentTracker Application...');
             process.exit(0);
     }

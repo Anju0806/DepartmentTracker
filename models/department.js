@@ -15,6 +15,15 @@ module.exports = {
       });
   },
 
+  deleteFromDepartment: async function (departmentId) {
+    const db = await connect();
+    return db.execute(`DELETE FROM department WHERE id = ${departmentId}`)
+
+      .then(result => {
+        return result[0].affectedRows;
+      });
+  },
+
   budget: async function () {
     const db = await connect();
     return db

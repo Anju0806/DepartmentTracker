@@ -9,7 +9,7 @@ async function seedEmployees(num = 11) {
         const randomId = Math.floor(Math.random() * 10) + 1;
         
         await employee.create({
-            //id:randomnum,
+            id:randomnum,
             firstname: faker.person.firstName(),
             lastname: faker.person.lastName(),
             role_id: randomId,
