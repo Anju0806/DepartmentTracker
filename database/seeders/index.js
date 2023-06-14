@@ -92,7 +92,7 @@ async function displayOpeningPage() {
 
             const selectedDept = select_department.dept_selected;
             const departmentId = selectedDept !== undefined ? selectedDept : null;
-
+            console.log(departmentId);
             await role.create({
                 title: role_name,
                 department_id: departmentId,
