@@ -222,12 +222,17 @@ async function displayOpeningPage() {
                 },
             ]);
             managerId = select_manager.manager_selected;
+
             try {
+                if(managerId == empId){console.log(`Update not successfull- selected the employee as own manager`);}
+                else{
                 await employee.updateEmployeeManager({
                     id: empId,
                     manager_id: managerId,
+                
                 });
                 console.log(`Employee manager updated successfully.`);
+            }
             } catch (error) {
                 console.log('An error occurred while updating the employee manager:', error);
             }
