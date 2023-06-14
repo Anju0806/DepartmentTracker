@@ -135,18 +135,6 @@ async function displayOpeningPage() {
             ]);
             const employee_lastname = addlastname.lastname;
 
-            m = await employee.all();
-            managerChoices = m.map((emp) => ({ name: `${emp.first_name} ${emp.last_name}`, value: emp.id }));
-            select_manager = await inquirer.prompt([
-                {
-                    type: 'list',
-                    name: 'manager_selected',
-                    message: 'Please select the manager: ',
-                    choices: managerChoices,
-                },
-            ]);
-            managerId = select_manager.manager_selected;
-
             let r = await role.all();
             let roleChoices = r.map((rolemap) => ({ name: rolemap.title, value: rolemap.id }));
             let select_role = await inquirer.prompt([
@@ -163,7 +151,7 @@ async function displayOpeningPage() {
                 firstname: employee_firstname,
                 lastname: employee_lastname,
                 role_id: roleId,
-                manager_id: managerId,
+                manager_id: null,
             })
                 .then(() => {
                     console.log(`Employee ${employee_firstname} ${employee_lastname} added successfully.`);
