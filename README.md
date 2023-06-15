@@ -51,7 +51,9 @@ Contributions are welcome! If you would like to contribute to this project, plea
 5. Submit a pull request explaining your changes.
 
 ## Screenshots
-
+<img width="1440" alt="ss1" src="https://github.com/Anju0806/DepartmentTracker/assets/126565826/eade609e-3ae0-4b63-b045-6f70796f71f9">
+<img width="1440" alt="ss2" src="https://github.com/Anju0806/DepartmentTracker/assets/126565826/0647e4ca-38a4-4358-ae87-1ed47e413019">
+<img width="1440" alt="ss3" src="https://github.com/Anju0806/DepartmentTracker/assets/126565826/785e06f6-c7a4-468f-8f8d-dbdb2980606a">
 
 ## Questions
 If you have any questions about the repo, please open an issue or contact me at anjualfino@gmail.com. 
