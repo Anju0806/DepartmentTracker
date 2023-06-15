@@ -9,7 +9,7 @@ const role = require('./models/role');
 const { displayRoles } = require('./models/displayRoles');
 
 
-console.log(process.env.DB_HOST);
+//console.log(process.env.DB_HOST);
 
 async function displayOpeningPage() {
     console.log('Welcome to the DepartmentTracker Application!');
