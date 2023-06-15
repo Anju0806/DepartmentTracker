@@ -38,6 +38,7 @@ This project is licensed under the MIT .
 
 ## Walkthrough Video link
 
+https://drive.google.com/file/d/1JaqqkFtMqIkPp_igYzzKQ2Kc3ooOlsjI/view
 
 ## Contributing
 
