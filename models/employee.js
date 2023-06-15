@@ -7,12 +7,8 @@ module.exports = {
    */
     create: async function (attributes) {
         const db = await connect();
-        console.log(attributes);
         return db.execute('INSERT INTO `depttracker_db`.`employee` (`first_name`, `last_name`, `role_id`, `manager_id`) VALUES (?, ?, ?, ?)', [attributes.firstname, attributes.lastname, attributes.role_id, attributes.manager_id])
 
-            .then(result => {
-                //console.log('abc', result)
-            });
     },
 
     /**

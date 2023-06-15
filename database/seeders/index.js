@@ -13,7 +13,7 @@ const seedRoles = require('./role_seeder');
     await db.execute('DROP TABLE IF EXISTS department');
     await db.execute('DROP TABLE IF EXISTS role');
     await db.execute('DROP TABLE IF EXISTS employee');
-    await db.execute('SET FOREIGN_KEY_CHECKS = 1');
+    await db.execute('SET FOREIGN_KEY_CHECKS = 1'); 
 
     const createdepartment = 'CREATE TABLE `depttracker_db`.`department` (`id` INT NOT NULL AUTO_INCREMENT,`name` VARCHAR(30) NOT NULL,PRIMARY KEY (`id`))';
     await db.execute(createdepartment);
@@ -24,12 +24,12 @@ const seedRoles = require('./role_seeder');
     await seedRoles();
 
     const createemployee = 'CREATE TABLE `depttracker_db`.`employee` ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT, `first_name` VARCHAR(30) NOT NULL, `last_name` VARCHAR(30) NOT NULL, `role_id` INT NULL, PRIMARY KEY (`id`), CONSTRAINT `fk_role_id` FOREIGN KEY (`role_id`) REFERENCES `depttracker_db`.`role` (`id`) ON DELETE SET NULL ON UPDATE CASCADE, `manager_id` INT UNSIGNED);';
-   
+
     await db.execute(createemployee);
     await seedEmployees();
-   
 
-       
+
+
 
     console.log('Database seeding completed.');
     process.exit(0);
